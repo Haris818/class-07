@@ -1,0 +1,151 @@
+﻿@{
+    ViewBag.Title = "HOME";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <style>
+        /* Body styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        /* Container styles */
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+       h2 {
+    text-align: center;
+    color: #333;
+    animation: fadeIn 2s ease-in-out;
+}
+
+
+}
+
+
+        p {
+            margin: 10px 0;
+        }
+
+        input[type="text"], input[type="email"], input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+        /* Validation message styling */
+        .validation-message {
+            color: red;
+            font-size: 14px;
+        }
+
+        /* Success message styling */
+        .success-message {
+            color: green;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>FORM SUBMISSION</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <p>
+                Enter User Name: @Html.TextBox("username", null, new { @class = "form-input" })
+                <div class="validation-message">
+                    @Html.ValidationMessage("username")
+                </div>
+            </p>
+
+            <p>
+                Enter User Age: @Html.TextBox("age", null, new { @class = "form-input" })
+                <div class="validation-message">
+                    @Html.ValidationMessage("age")
+                </div>
+            </p>
+
+            <p>
+                Enter User Email: @Html.TextBox("email", null, new { @class = "form-input" })
+                <div class="validation-message">
+                    @Html.ValidationMessage("email")
+                </div>
+            </p>
+
+            <p>
+                <input type="submit" value="Submit" />
+            </p>
+
+            <div class="success-message">
+                @Html.Raw(ViewData["SuccessMessage"] as string)
+            </div>
+        }
+
+      
+    </div>
+
+</body>
+</html>
